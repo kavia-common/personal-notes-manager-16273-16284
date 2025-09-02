@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './App.css';
+import AssistantMessage from './AssistantMessage';
 
 /**
  * Notes App – Vintage Notepad UI
@@ -403,7 +404,32 @@ function App() {
           onDelete={deleteNote}
           onTogglePin={togglePin}
         />
-        <Editor note={activeNote} onChange={updateNote} onDelete={deleteNote} />
+        <div style={{ overflowY: 'auto' }}>
+          <div style={{ padding: '16px 0' }}>
+            <AssistantMessage
+              headerText="KaviaAI"
+              alertContent={
+                <span>
+                  <b>
+                    It looks like there was a problem reading your uploaded design image ( 20250825_082754_1.png ) from
+                    the path /home/kavia/workspace/code-generation/attachments/20250825_082754_1.png.
+                  </b>{' '}
+                  This may be due to an unsupported file type or a path issue.
+                </span>
+              }
+              bullets={[
+                'Double-check the file name and extension are correct',
+                'Confirm the image exists at the indicated path',
+                'Re-upload the image if needed',
+              ]}
+              paragraphs={[
+                'Once I have a valid image, I will extract all design details and move forward with generating your full React code based on your design reference!',
+                'Let me know once you’ve uploaded or clarified the design image. 😊',
+              ]}
+            />
+          </div>
+          <Editor note={activeNote} onChange={updateNote} onDelete={deleteNote} />
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 :root {
+  /* Existing vintage notepad theme variables */
   --bg-canvas: #F6F1E7;
   --bg-app: #F2EAD8;
   --paper-edge: #E6DDCA;
@@ -33,6 +34,18 @@
   --space-6: 24px;
   --topbar-h: 60px;
   --sidebar-w: 280px;
+
+  /* New assistant card palette from style_guide.md */
+  --asst-bg-canvas: #FFFFFF;
+  --asst-bg-surface: #FFFFFF;
+  --asst-border-soft: #E5E7EB;
+  --asst-text-primary: #111827;
+  --asst-text-secondary: #374151;
+  --asst-accent-warning: #F59E0B;
+  --asst-accent-warning-bg: #FFFBEB;
+  --asst-link: #2563EB;
+
+  --asst-radius: 10px; /* 10–12px suggested */
 }
 
 /* Base */
@@ -236,6 +249,12 @@ button { font: inherit; color: inherit; }
   background: var(--bg-app);
   overflow: auto;
 }
+
+/* Ensure assistant message uses white canvas background regardless of app theme */
+.assistant-msg,
+.assistant-msg__card {
+  background-color: var(--asst-bg-surface);
+}
 .editor.empty-state { display: flex; align-items: flex-start; }
 .paper {
   position: relative;
@@ -326,6 +345,88 @@ button { font: inherit; color: inherit; }
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 6px;
+}
+
+/* Assistant Message (new design card) */
+.assistant-msg {
+  max-width: 640px;
+  margin: 12px auto;
+  padding: 0 12px; /* breathing space against app edges */
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.assistant-msg__header {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--asst-text-primary);
+  margin: 0 0 8px 0;
+}
+
+.assistant-msg__card {
+  background: var(--asst-bg-surface);
+  border: 1px solid var(--asst-border-soft);
+  border-radius: var(--asst-radius);
+  padding: 16px;
+  color: var(--asst-text-primary);
+  box-shadow: 0 1px 2px rgba(17, 24, 39, 0.04); /* subtle elevation */
+}
+
+.assistant-msg__alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--asst-accent-warning);
+  background: var(--asst-accent-warning-bg);
+  margin-bottom: 8px;
+}
+
+.assistant-msg__alert--no-bg {
+  background: transparent;
+}
+
+.assistant-msg__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--asst-accent-warning);
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
+
+.assistant-msg__alert-text {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.assistant-msg__alert-text b {
+  font-weight: 600;
+}
+
+.assistant-msg__label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 8px 0 2px;
+}
+
+.assistant-msg__list {
+  margin: 0 0 8px 20px;
+  padding: 0;
+}
+
+.assistant-msg__list li {
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 6px;
+}
+
+.assistant-msg__para {
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 8px;
+  color: var(--asst-text-primary);
 }
 
 /* Responsive */
